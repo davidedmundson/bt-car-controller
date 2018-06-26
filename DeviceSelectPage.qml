@@ -22,9 +22,10 @@ Kirigami.ScrollablePage  {
             onClicked: root.serviceSelected(model.service)
         }
     }
+    refreshing: true;
     onRefreshingChanged: {
         if (refreshing)
             bluetoothModel.running = true;
-        refreshing = Qt.binding(bluetoothModel.running)
+        refreshing = Qt.binding(bluetoothModel.running == true)
     }
 }

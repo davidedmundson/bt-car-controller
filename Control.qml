@@ -8,11 +8,20 @@ Slider {
     from: -1
     to: 1
     stepSize: 0.25
+    snapMode: Slider.SnapAlways
 
     onPressedChanged: {
         if (!pressed) {
             value = 0;
         }
+    }
+
+    //my controller shuts down if there's no new data in 3 seconds, repeat every second even if the value doesn't change
+    Timer {
+        interval: 1000
+        repeat: true
+        running: pressed
+        onTriggered: valueChanged(value)
     }
 
     background: Rectangle {
